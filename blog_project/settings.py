@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import django_heroku
 from pathlib import Path
 # import environ
-from decouple import config
+# from decouple import config
 import os
 
 # env = environ.Env()
@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'django-insecure-*d=6*33k$g^h&1m&dlrbl=8^=dh6(sw@rymha2&@1)uzbwex=x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
