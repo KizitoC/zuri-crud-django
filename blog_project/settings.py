@@ -12,12 +12,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import django_heroku
 from pathlib import Path
-# import environ
-# from decouple import config
+from environs import Env
 import os
 
-# env = environ.Env()
-# environ.Env.read_env()
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*d=6*33k$g^h&1m&dlrbl=8^=dh6(sw@rymha2&@1)uzbwex=x'
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool("DEBUG", defaualt=False)
 
 ALLOWED_HOSTS = ['kizito-blog.herokuapp.com', '127.0.0.1', 'localhost', '0.0.0.0']
 
@@ -84,11 +83,14 @@ WSGI_APPLICATION = 'blog_project.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": env.dj_db_url("DATABASE_URL")
 }
+
+
+# 'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 
 
 # Password validation
@@ -147,14 +149,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 django_heroku.settings(locals())
 
 
-from django.views.decorators.csrf import requires_csrf_token
-from django.http import (
-    HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
-    HttpResponseServerError,
-)
-@requires_csrf_token
-def my_customized_server_error(request, template_name='500.html'):
-    import sys
-    from django.views import debug
-    error_html = debug.technical_500_response(request, * sys.exc_info()).content
-    return HttpResponseServerError(error_html)
+# from django.views.decorators.csrf import requires_csrf_token
+# from django.http import (
+#     HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound,
+#     HttpResponseServerError,
+# )
+# @requires_csrf_token
+# def my_customized_server_error(request, template_name='500.html'):
+#     import sys
+#     from django.views import debug
+#     error_html = debug.technical_500_response(request, * sys.exc_info()).content
+#     return HttpResponseServerError(error_html)
