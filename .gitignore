@@ -4,4 +4,5 @@ pyvenv.cfg
 Lib/
 Scripts/
 __pycache__/
+staticfiles/
 db.sqlite3
