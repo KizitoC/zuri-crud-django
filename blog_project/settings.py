@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-*d=6*33k$g^h&1m&dlrbl=8^=dh6(sw@rymha2&@1)uzbwex=x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['kizito-blog.herokuapp.com', 'localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['kizito-blog.herokuapp.com', '127.0.0.1', 'localhost', '0.0.0.0']
 
 # Application definition
 
@@ -129,7 +129,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
