@@ -19,3 +19,10 @@ urlpatterns = [
 ]
 
 # url(r'^favicon\.ico$', RedirectView.as_view(url='static/images/favicon.ico')),
+
+
+
+
+
+# staticfiles/
+# db.sqlite3
